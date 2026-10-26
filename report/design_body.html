@@ -1,0 +1,341 @@
+<div class="wrap">
+<header>
+  <div class="eyebrow">设计报告 · 定型方案 · Rb-85 / Rb-87</div>
+  <h1>超导螺线管 Rb-87 电磁同位素分离器</h1>
+  <p class="lede">本报告给出定型方案的原理、设计参数、计算结果和设计要求。分离器用超导螺线管作为与质量相关的透镜：环形表面电离源发射的平行 Rb⁺ 束在螺线管中回旋，Rb-87 在焦面汇聚到轴上，经中心孔进入收集口袋；Rb-85 在焦面形成圆环，落在废束靶上。</p>
+  <div class="kpis">
+    <div class="kpi"><b>&gt; 99.9%</b><span>Rb-87 产品丰度（天然 27.8%，单级）</span></div>
+    <div class="kpi"><b>≈ 100%</b><span>Rb-87 收集效率（中心孔半径 5.9 mm）</span></div>
+    <div class="kpi"><b>2.785 T × 1 m</b><span>超导螺线管，Rb⁺ 10 keV</span></div>
+    <div class="kpi"><b>0.1–0.2 mA</b><span>无中和工作流强，Rb-87 产量 2–4 mg/天</span></div>
+  </div>
+</header>
+
+<section id="d00">
+  <div class="secno">00 · 设计参数</div>
+  <h2>主要参数</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>子系统</th><th>参数</th><th>数值</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="2">离子</td><td>种类 / 能量</td><td class="num">Rb⁺，10 keV（Bρ = 0.1327 / 0.1342 T·m，Rb-85 / 87）</td></tr>
+      <tr><td>工作流强（无中和）</td><td class="num">0.1–0.2 mA</td></tr>
+      <tr><td rowspan="5">离子源</td><td>类型</td><td class="num">环形表面电离源，多孔 Re 电离器，1400 K</td></tr>
+      <tr><td>发射环</td><td class="num">R = 30 mm，宽 1 mm，发射面 z = −0.685 m</td></tr>
+      <tr><td>引出（v3 加速–减速）</td><td class="num">发射体 +10 kV；抑制极 −2.5 kV；地电极；单透镜 +5.8 kV</td></tr>
+      <tr><td>束流品质（0.1 mA）</td><td class="num">σr′ 1.8 mrad，σθ′ 2.5 mrad，ε<sub>rms</sub> 1.0 mm·mrad，能散约 3 eV</td></tr>
+      <tr><td>源区磁场</td><td class="num">屏蔽到单透镜处 ≤ 5 mT</td></tr>
+      <tr><td rowspan="3">螺线管</td><td>场强 / 长度</td><td class="num">2.785 T，1.0 m（z = 0–1 m），持续电流模式</td></tr>
+      <tr><td>线圈</td><td class="num">r = 100–130 mm，室温孔 ≥ 180 mm，NbTi 无液氦，储能约 0.1 MJ</td></tr>
+      <tr><td>Larmor 转角</td><td class="num">α₈₇ ≈ 10.45 rad，Δα ≈ 0.12 rad；螺旋角 ψ ≈ 0.31 rad</td></tr>
+      <tr><td rowspan="2">束流线</td><td>漂移段</td><td class="num">源出口 z = −0.6 m 至线圈入口，0.6 m</td></tr>
+      <tr><td>校正与诊断</td><td class="num">冷挡板 C1、导向器 ST1 / ST2、诊断站 D1 / D2、冷衬管、抑制环 E2</td></tr>
+      <tr><td rowspan="4">收集器</td><td>位置</td><td class="num">z = 1.365 m（零流强）；0.1 mA 时 1.39–1.46 m</td></tr>
+      <tr><td>中心孔</td><td class="num">半径 5.9 mm，刀口锥孔嘴</td></tr>
+      <tr><td>产品口袋</td><td class="num">落点能量 ≥ 1.5 keV，30 mm 接地漂移段 + 球面栅网</td></tr>
+      <tr><td>废束靶</td><td class="num">石墨，≤ 230 K，四扇区读出</td></tr>
+      <tr><td rowspan="2">真空</td><td>本底气压</td><td class="num">≤ 10⁻⁵ Pa</td></tr>
+      <tr><td>铷分压</td><td class="num">束流区 ≤ 10⁻⁶ Pa，收集区 ≤ 10⁻⁷ Pa</td></tr>
+    </tbody></table></div>
+</section>
+
+<section id="d01">
+  <div class="secno">01 · 原理</div>
+  <h2>螺线管作为与质量相关的透镜</h2>
+  <p>离子在无场区以电压 V 加速（同能量 E = qV）后进入螺线管。轴对称场中正则角动量守恒（Busch 定理）：</p>
+  <div class="eq"><i>p</i><sub>θ</sub> = <i>m r</i>²<i>θ̇</i> + <i>q r A</i><sub>θ</sub> = 常数 &nbsp;⇒&nbsp; 源在无场区时 <i>θ̇</i> = −<i>qB</i>(<i>z</i>)/(2<i>m</i>) = −ω<sub>L</sub></div>
+  <p>离子穿过入口漏场时获得方位速度，在均匀场中做经过轴线的回旋运动。在以 Larmor 频率 ω<sub>L</sub> = ω<sub>c</sub>/2 旋转的坐标系里，横向运动是平面简谐振荡：</p>
+  <div class="eq"><i>x</i>″ + <i>K</i>(<i>z</i>)² <i>x</i> = 0,&nbsp;&nbsp; <i>K</i> = <i>qB</i>/(2<i>p</i>),&nbsp;&nbsp; α = ∫<i>K</i> d<i>z</i> = <i>q</i>∫<i>B</i>d<i>z</i> / (2√(2<i>mqV</i>)),&nbsp;&nbsp; Δα = α · Δ<i>m</i>/(2<i>m</i>)</div>
+  <p>α 同时决定束流截面的方位转角和螺线管透镜的径向聚焦相位。对 Rb-85/87，Δα/α = Δm/2m ≈ 1.16%，在本设计中 Δα ≈ 0.12 rad。</p>
+  <p><b>环形平行束。</b>所有离子从同一半径 R、以平行于轴的方向进入螺线管，螺旋运动带来的非近轴相位（∝ ψ²，ψ = K·R 为螺旋角）对每个离子都相同，不形成像差。螺线管因而成为焦距与质量相关的理想透镜：选定场强使 Rb-87 在焦面汇聚到轴上，Rb-85 的相位多出 Δα，在焦面形成半径 7–16 mm 的圆环。中心孔把两者分开。环形源沿方位使用了整个 2π 发射面积，流强按方位数倍增。</p>
+  <div class="grid2">
+    <figure><div class="plot tall" id="p-3d"></div><figcaption><span class="tag">图 1</span>环形源不同方位的代表性轨迹（示意计算）。离子在入口获得方位速度，在螺线管内绕轴做螺旋运动，出口后 Rb-87（橙）汇聚到轴上的焦点。可拖动旋转。</figcaption></figure>
+    <figure><div class="plot tall" id="p-rz"></div><figcaption><span class="tag">图 2</span>上：轴上磁场 B<sub>z</sub>(0,z)，由电流环叠加计算（厚线圈 r = 100–130 mm，长 1 m）。下：同一方位一对离子的半径 r(z)。两条曲线在螺线管内几乎重合，差异在出口后显现。</figcaption></figure>
+  </div>
+</section>
+
+<section id="d02">
+  <div class="secno">02 · 整机布局</div>
+  <h2>从离子源到收集器</h2>
+  <p>整机沿 z 轴排列，下图按比例绘制。环形束在漂移段保持约 30 mm 半径，进入线圈后在 Larmor 坐标里会聚，Rb-87 在 z = 1.365 m 汇聚到轴上，Rb-85 形成 7–16 mm 的环。以下数值均来自全三维 Boris 追踪，源相空间取自自洽引出计算。</p>
+  <div class="schem"><svg id="schem" viewBox="0 0 1000 330" role="img" aria-label="束流线布局示意图"></svg></div>
+  <div class="tbl"><table>
+    <thead><tr><th>元件</th><th>位置 z (m)</th><th>参数</th><th>作用</th></tr></thead>
+    <tbody>
+      <tr><td>环形离子源（第 03 节）</td><td class="num">−0.685 发射面<br>−0.60 出口</td><td>R = 30 mm，+10 kV；抑制极 −2.5 kV，单透镜 +5.8 kV；源区磁屏蔽</td><td>抑制极形成 −1.8 kV 电子势垒，下游电子不会流回源区</td></tr>
+      <tr><td>冷挡板 / 铷阱 C1</td><td class="num">−0.58</td><td>环形缝 8 mm，LN₂ 或 ≤ 200 K</td><td>截留电离器蒸发的中性铷</td></tr>
+      <tr><td>导向器 ST1（x/y）</td><td class="num">−0.575 … −0.525</td><td>板距 120 mm，长 50 mm，±240 V ↔ ±10 mrad</td><td>校正源倾斜；与 ST2 组合实现平移</td></tr>
+      <tr><td>诊断站 D1（可插入）</td><td class="num">−0.45</td><td>8 扇区环形法拉第杯 + 环形狭缝角度探头</td><td>总流强、方位均匀性、环心位置、角散</td></tr>
+      <tr><td>导向器 ST2（x/y）</td><td class="num">−0.275 … −0.225</td><td>同 ST1</td><td>与 ST1 一起把环对到磁轴上（位置 + 角度）</td></tr>
+      <tr><td>诊断站 D2（可插入）</td><td class="num">−0.15</td><td>荧光屏 / MCP 成像，四象限环形探头</td><td>进入线圈前的环心和环宽</td></tr>
+      <tr><td>超导螺线管</td><td class="num">0 … 1.0</td><td>2.785 T，线圈 r 100–130 mm</td><td>质量相关透镜</td></tr>
+      <tr><td>冷衬管 L</td><td class="num">−0.2 … 1.5</td><td>内径 ≥ 150 mm，≤ 230 K，内壁石墨涂层</td><td>吸附铷，压低束流区铷蒸气；兼作接地边界</td></tr>
+      <tr><td>电子抑制环 E2</td><td class="num">≈ 1.28</td><td>内径 40 mm，−300 V</td><td>挡住收集器二次电子</td></tr>
+      <tr><td>收集器（第 05 节）</td><td class="num">1.365</td><td>孔半径 5.9 mm，x/y 平移 ±10 mm，z 平移 ±50 mm</td><td>Rb-87 进孔，Rb-85 落在环形废束靶</td></tr>
+    </tbody>
+  </table></div>
+  <p>束流包络：线圈前的漂移段里，源出口自带的向内会聚加上边缘场，使环半径从 29.9 mm 缩到线圈入口处的约 26 mm。进入线圈后，零正则角动量的离子在实验室系里回旋，每圈经过轴附近（回旋波长约 0.3 m），r 在约 4 mm 和 25 mm 之间振荡；所有离子同相，两种同位素的相位逐渐错开。漂移段里两种同位素完全重合，导向器和诊断不需要区分质量。</p>
+  <div class="grid2">
+    <figure><div class="plot short" id="pField"></div><figcaption><span class="tag">图 3</span>轴上 B<sub>z</sub>(z)，2.785 T。灰色带为线圈。</figcaption></figure>
+    <figure><div class="plot short" id="pEnv"></div><figcaption><span class="tag">图 4</span>离子半径 r(z)，零流强。阴影为 5%–95% 分位，实线为中位数；橙色 Rb-87，蓝色 Rb-85，竖虚线为收集器。</figcaption></figure>
+  </div>
+</section>
+
+<section id="d03">
+  <div class="secno">03 · 离子源</div>
+  <h2>环形表面电离源</h2>
+  <div class="kpis">
+    <div class="kpi"><b>99.7%</b><span>Re 表面 1400 K 的铷电离效率</span></div>
+    <div class="kpi"><b>1.97 kV/mm</b><span>最大电极表面场</span></div>
+    <div class="kpi"><b>≈ 75 W</b><span>电离器加热功率</span></div>
+    <div class="kpi"><b>8–16 mg/天</b><span>0.1–0.2 mA 运行时的铷消耗</span></div>
+  </div>
+  <h3>引出电极（加速–减速结构）</h3>
+  <div class="tbl"><table><thead><tr><th>电极</th><th>位置</th><th>参数</th></tr></thead><tbody>
+    <tr><td>发射体</td><td class="num">0</td><td>多孔 Re 环，R = 30 mm，发射宽 1 mm，1400 K，+10 kV；Pierce 电极 67.5°，发射体内凹 1 mm</td></tr>
+    <tr><td>抑制极</td><td class="num">10 mm</td><td>−2.5 kV，厚 3 mm，缝 4 mm</td></tr>
+    <tr><td>地电极</td><td class="num">16 mm</td><td>厚 3 mm，缝 6 mm</td></tr>
+    <tr><td>正电压单透镜</td><td class="num">30 mm</td><td>+5.8 kV，长 6 mm，间隙 10 mm，缝 8 mm</td></tr>
+    <tr><td>全部电极</td><td class="num">—</td><td>边缘倒圆 1.4 mm</td></tr>
+  </tbody></table></div>
+  <ul class="tight">
+    <li><b>表面场：</b>最高 1.97 kV/mm（抑制极），发射体 1.69 kV/mm，单透镜 ≤ 1.0 kV/mm，满足铷环境下 ≤ 2 kV/mm 的设计要求。中心绝缘柱上的最大电位差 12.5 kV。</li>
+    <li><b>电位分布：</b>抑制极缝处束线电位最低 −1.8 kV，挡住下游电子回流到发射体；单透镜处是 +5 kV 的电位鼓包，慢正离子被推出，不被俘获。源高压笼按 30 kV X 射线屏蔽设计。</li>
+    <li><b>单透镜的作用：</b>引出缝本身是发散透镜（斜率约 12.6 /m）。正电压单透镜在 +5.8 kV 附近把出口斜率调到零（+5.6 kV：3.5 /m、3.3 mrad；+5.9 kV：−1.1 /m、2.0 mrad），随流强在线微调。</li>
+    <li><b>束流品质（0.1 mA，+5.8 kV）：</b>σr′ = 1.8 mrad，σθ′ = 2.5 mrad，ε<sub>rms</sub> = 1.0 mm·mrad，平均 r′ −4.2 mrad，能散约 3 eV。平均向内会聚对所有离子相同，由螺线管场强补偿。</li>
+    <li><b>全链路：</b>接入分离器后 Rb-87 收集 100%，2.76–2.82 T 范围内 ≥ 99.97%。</li>
+    <li><b>源内空间电荷：</b>Child 定律给出饱和电流约 2.5 mA，远高于工作流强；流强瓶颈在分离器内部。</li>
+  </ul>
+  <h3>源区磁屏蔽</h3>
+  <p>正电压单透镜在线圈残余场中会俘获电子（Penning 型阱）。电子跟踪给出的俘获比例：≤ 10 mT 时 0%，15 mT 时 7%，24 mT 时 31%。设计要求：源区磁屏蔽（或补偿线圈），单透镜处残余场 ≤ 5 mT，屏蔽覆盖发射体到单透镜下游约 50 mm。分离光学本身对发射面残余场不敏感（−10 到 +25 mT 范围内收集效率 ≥ 99.98%）。补偿线圈方案：半径 80 mm、约 2050 安匝，发射面前后 ±2 mm 内残余 ≤ 0.1 mT，对线圈中心场的影响 5 μT。</p>
+  <h3>电离效率与材料</h3>
+  <p>Saha-Langmuir 公式：β = α/(1+α)，α = (g₊/g₀)·exp[(φ − IP)/kT]，Rb 的 IP = 4.177 eV，g₊/g₀ = 1/2。铼（φ = 4.96 eV）在 1400 K 时未电离比例 0.3%，铱（5.27 eV）0.02%，多晶钨（4.55 eV）约 8%。电离器采用多孔 Re 整体件（不用表面镀层，避免堵孔）；备选为“多孔 W 供料 + 实心 Re/Ir 电离环”。本设计的电流密度 0.16 mA/cm² 下，1250 K 以上表面铷覆盖度 &lt; 1%，不发生功函数塌缩。</p>
+  <div class="grid2">
+    <figure><div class="plot" id="p-f-ion"></div><figcaption><span class="tag">图 5</span>Rb 在 W、Re、Ir 表面的电离效率与温度。</figcaption></figure>
+    <figure><div class="plot" id="p-f-cov"></div><figcaption><span class="tag">图 6</span>表面铷覆盖度（单层），Rb⁺ 脱附能取 1.8–2.6 eV。实线为本设计的 0.16 mA/cm²，虚线为 10 mA/cm² 对照。</figcaption></figure>
+  </div>
+  <h3>铷的供给</h3>
+  <p>铷从电离器背面的储液腔蒸发，以 Knudsen 流穿过约 1 mm 厚的多孔电离器（孔隙率约 20%，孔径约 3 µm）到达正面。0.3 mA 对应储液约 173 °C。离子电流对储液温度的灵敏度约 4.7%/K，流强稳定 ±1% 要求储液控温 ±0.2 K。5 g 储液在 0.3 mA 下约可用 7 个月。</p>
+  <figure><div class="plot" id="p-f-sup"></div><figcaption><span class="tag">图 7</span>储液温度与可供给的等效离子电流。三条线对应多孔材料透过率的范围，水平虚线为 0.3 mA。</figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th>运行流强</th><th>储液温度（典型透过率）</th><th>铷消耗</th><th>5 g 储液可用</th></tr></thead>
+    <tbody id="f-cons"></tbody></table></div>
+  <h3>热设计</h3>
+  <p>电离器为 4 mm × 4 mm 截面的环，正面 4 mm 宽面向引出区，背面和侧面两层钽热屏，向储液腔的传导约 8 W。加热采用背面钨丝辐射加热或电子轰击加热，不让加热电流流过发射环（避免环上压降变成能散）；灯丝与发射环同处 +10 kV，用 15 kV 隔离变压器供电。径向热膨胀约 0.15 mm，对分离无影响。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>电离器温度</th><th>正面辐射</th><th>背面与侧面（两层热屏）</th><th>传导</th><th>合计</th></tr></thead>
+    <tbody id="f-heat"></tbody></table></div>
+  <h3>中性铷</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>电离面</th><th>电离效率</th><th>中性铷泄漏</th><th>发射面附近中性密度</th><th>引出区电荷交换概率</th></tr></thead>
+    <tbody id="f-cx"></tbody></table></div>
+  <p>引出区电荷交换对丰度没有影响。中性铷由源区冷挡板截留，绝缘子放在挡板背后，避开发射面视线。</p>
+  <h3>结构与支撑</h3>
+  <ul class="tight">
+    <li><b>中心绝缘柱：</b>所有内圈电极（Pierce 内块、抑制极内环、地电位内盘、单透镜内环）装在一根从源后法兰伸出的氧化铝绝缘柱上，供电线走柱心，束流路径上无遮挡，严格轴对称。柱子加迷宫式裙边遮挡，并恒温在 150–200 °C，使吸附的铷及时蒸发。</li>
+    <li><b>周向均匀性：</b>电离器分 8 扇区控温，以 D1 的 8 扇区法拉第杯信号闭环，保持方位发射均匀。</li>
+    <li><b>寿命：</b>1400 K 下电离器材料蒸发可以忽略；铷原料用高纯度，储液腔预先烘烤除气。束流 100% 通过电极缝，电极溅射可忽略。</li>
+  </ul>
+  <h3>电源</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>电源</th><th>规格</th><th>要求</th></tr></thead>
+    <tbody>
+      <tr><td>发射体高压</td><td class="num">+10 kV, 3 mA</td><td>稳定度 10⁻⁴，纹波 &lt; 1 V</td></tr>
+      <tr><td>抑制极</td><td class="num">−2.5 kV</td><td>—</td></tr>
+      <tr><td>单透镜</td><td class="num">+5.8 kV</td><td>运行中随流强微调</td></tr>
+      <tr><td>电离器加热</td><td class="num">约 150 W，浮在 +10 kV</td><td>15 kV 隔离变压器，非直接通电加热</td></tr>
+      <tr><td>储液腔加热</td><td class="num">约 20 W，浮在 +10 kV</td><td>控温 ±0.2 K，可用离子电流做反馈</td></tr>
+      <tr><td>源区磁屏蔽 / 补偿线圈</td><td class="num">半径 80 mm，约 2 kA·匝</td><td>单透镜处残余场 ≤ 5 mT</td></tr>
+    </tbody></table></div>
+</section>
+
+<section id="d04">
+  <div class="secno">04 · 束流线与调谐</div>
+  <h2>磁场、高压窗口与对准</h2>
+  <h3>磁场与高压窗口</h3>
+  <p>收集器固定（z = 1.365 m，孔半径 5.9 mm）时扫描 B₀，孔内电流即为一张质谱：Rb-85 在 2.735–2.755 T 进孔，Rb-87 在 2.775–2.790 T 进孔，两峰均为平顶。这是调机的第一步，也是在线丰度监测手段。</p>
+  <figure><div class="plot" id="pB"></div><figcaption><span class="tag">图 8</span>孔内透过率与 B₀。橙色 Rb-87，蓝色 Rb-85（未乘丰度）。绿色带为效率 ≥ 99.5% 且丰度 ≥ 99.9% 的工作窗口 2.780–2.790 T。</figcaption></figure>
+  <p>Larmor 相位取决于 B/√E，加速电压误差等价于两倍的磁场误差。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>参数</th><th>可用范围（效率 ≥ 99.5%，丰度 ≥ 99.9%）</th><th>对设备的要求</th></tr></thead>
+    <tbody>
+      <tr><td>B₀</td><td class="num">2.780 – 2.790 T（±0.18%）</td><td>持续电流模式漂移 &lt; 10⁻⁵/h</td></tr>
+      <tr><td>源高压 10 kV</td><td class="num">±0.2%（±20 V）</td><td>10⁻⁴ 级高压电源，纹波 &lt; 10 V</td></tr>
+    </tbody>
+  </table></div>
+  <h3>对准与静电导向</h3>
+  <p>“收集器固定”指孔在机械轴上；“收集器对中”指孔移到 Rb-87 焦斑中心；“加导向”指用 ST1/ST2 校正后再对中。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>误差</th><th>焦斑位移</th><th>收集器固定<br>效率 / 丰度</th><th>收集器对中<br>效率 / 丰度</th><th>加导向后<br>效率 / 丰度</th></tr></thead>
+    <tbody id="misT"></tbody>
+  </table></div>
+  <ul class="tight">
+    <li><b>线圈误差：</b>焦斑跟随磁轴移动（1 mm 偏心 → 1.3 mm，1 mrad 倾斜 → 1 mm）。用 ST1、ST2 把环的中心线对到磁轴上（位置和角度），收集器跟随磁轴。</li>
+    <li><b>源倾斜：</b>由 ST1 一组抵消。</li>
+    <li><b>导向器规格：</b>平板场 E = 2Vθ/L；L = 50 mm、10 mrad 需 4 kV/m，120 mm 板距对应 ±240 V。平板宽 ≥ 150 mm，或用 8 电极圆柱形导向器。静电导向对两种同位素偏转角相同，不引入质量相关误差。</li>
+  </ul>
+  <h3>束流对中步骤</h3>
+  <ol class="steps">
+    <li>低流强（≤ 1 μA）下用 D1、D2 的扇区法拉第杯把环心对到机械轴（ST1/ST2）。</li>
+    <li>在 B₀ = 2.70–2.85 T 之间扫描，用收集器处的荧光屏或分段收集器记录 Rb-87 焦斑中心。</li>
+    <li>调节 ST1/ST2，使焦斑中心不随 B₀ 移动，此时环已对在磁轴上；把收集器平移到该点。</li>
+    <li>回到工作场强，按图 8 的质谱确认两峰的位置和平顶宽度。</li>
+  </ol>
+</section>
+
+<section id="d05">
+  <div class="secno">05 · 收集器</div>
+  <h2>收集器与废束几何</h2>
+  <p>在 2.785 T、z = 1.365 m 处，Rb-87 的最大半径 5.52 mm，Rb-85 的最小半径 7.36 mm，中间有 1.8 mm 空带，孔半径取 5.9 mm。</p>
+  <div class="schem"><svg id="colsvg" viewBox="0 0 1000 300" role="img" aria-label="收集器截面示意图"></svg></div>
+  <div class="tbl"><table>
+    <thead><tr><th>项目</th><th>数值</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>孔半径</td><td class="num">5.9 mm</td><td>5.5–6.5 mm 均可</td></tr>
+      <tr><td>Rb-87 在焦面的会聚角</td><td class="num">70 mrad rms，最大 86 mrad</td><td>孔后由产品口袋接收</td></tr>
+      <tr><td>Rb-85 落点</td><td class="num">r = 7.4 – 16.3 mm</td><td>废束靶外半径 ≥ 25 mm</td></tr>
+      <tr><td>废束功率</td><td class="num">0.2 mA 时约 1.5 W</td><td>自然冷却</td></tr>
+      <tr><td>收集器平移</td><td class="num">x/y ±10 mm，z ±50 mm</td><td>随流强设定 z（第 07 节）</td></tr>
+    </tbody>
+  </table></div>
+  <ul class="tight">
+    <li><b>刀口锥孔嘴：</b>孔口做成向上游伸出 10 mm 的接地薄壁锥，并延伸到孔后；废束靶表面退在孔口之后，废束靶溅射出的原子没有直接进入产品口袋的视线。</li>
+    <li><b>产品口袋：</b>孔后保持 30 mm 接地漂移段，再经球面栅网减速，离子以 ≥ 1.5 keV 落在冷的口袋底面。追踪结果：0–1 mA 全部进入口袋，无反射。口袋同时排斥束流区产生的慢离子，并直接给出 Rb-87 电流读数。</li>
+    <li><b>废束靶：</b>石墨，冷到 ≤ 230 K。石墨以插层化合物形式固定铷，低温压低蒸气压，避免废束靶成为紧挨收集孔的天然铷源。</li>
+    <li><b>冷表面：</b>凡是能看到孔口的表面（刀口锥、保护环、E2 环、废束靶）都冷到 ≤ 230 K，使铷粘附系数接近 1。</li>
+    <li><b>分段读出：</b>孔口外 5.9–7 mm 为四象限保护环，靶面分 4 个扇区；四象限信号给出焦斑中心，反馈给导向器和收集器平移台。</li>
+    <li><b>Rb-85 联产：</b>废束靶位置换成环形口袋，可同时收集高丰度 Rb-85（占束流 72%）。</li>
+  </ul>
+</section>
+
+<section id="d06">
+  <div class="secno">06 · 分离性能</div>
+  <h2>收集效率与丰度预算</h2>
+  <p>全三维追踪（真实源相空间，每种同位素 10⁴ 个粒子）：Rb-87 收集效率约 100%，Rb-85 进孔为 0，产品丰度 &gt; 99.9%。实际丰度由以下各项污染决定：</p>
+  <div class="tbl"><table>
+    <thead><tr><th>污染途径</th><th>条件</th><th>产品中的 Rb-85 含量</th></tr></thead>
+    <tbody>
+      <tr><td>残余气体散射</td><td>10⁻⁵ Pa N₂/H₂O（ZBL 截面）</td><td class="num">~4×10⁻⁵</td></tr>
+      <tr><td>铷蒸气散射</td><td>束流区铷分压 10⁻⁷ Pa</td><td class="num">~5×10⁻⁷</td></tr>
+      <tr><td>电荷交换快中性</td><td>任意气压</td><td class="num">≈ 0</td></tr>
+      <tr><td>源的未电离铷直射</td><td>孔对发射环的立体角 8×10⁻⁶</td><td class="num">~1×10⁻⁶</td></tr>
+      <tr><td>热铷原子沉积在口袋里</td><td>收集区铷分压 ≤ 10⁻⁷ Pa</td><td class="num">≤ 2.5×10⁻⁴</td></tr>
+      <tr><td>废束靶溅射</td><td>冷表面粘附系数 0.99（中性蒙特卡罗）</td><td class="num">~7×10⁻⁵</td></tr>
+      <tr><td>源晕</td><td>束晕份额 h &lt; 0.5%</td><td class="num">&lt; 6×10⁻⁴</td></tr>
+      <tr><td><b>合计</b></td><td></td><td class="num"><b>&lt; 10⁻³（丰度 &gt; 99.9%）</b></td></tr>
+    </tbody>
+  </table></div>
+  <p>源晕的贡献按 h × (0.7217/0.2783) × (a/R<sub>h</sub>)² 计算（a 为孔半径，R<sub>h</sub> ≈ 25 mm 为晕在焦面的分布半径）。设计指标：束晕（焦面 r &gt; 7 mm 以外的 Rb-85 份额）&lt; 0.5%。电荷交换产生的快中性原子沿直线飞行，落在 Rb-85 环外侧，不进入产品孔。</p>
+  <div class="grid2">
+    <figure><div class="plot" id="pScat"></div><figcaption><span class="tag">图 9</span>在 z 处发生一次事件后 Rb-85 落进收集孔的概率。实线为 10、20、50 mrad 的弹性散射；电荷交换快中性在所有位置都是 0。灰线为 Rb-87 电荷交换后仍进孔的概率。</figcaption></figure>
+    <figure><div class="plot short" id="pVap"></div><figcaption><span class="tag">图 10</span>金属铷饱和蒸气压与壁温。设计上限取 ≤ 10⁻⁷ Pa，对应壁温 ≤ 230 K。</figcaption></figure>
+  </div>
+</section>
+
+<section id="d07">
+  <div class="secno">07 · 空间电荷与工作点</div>
+  <h2>工作流强</h2>
+  <p>空间电荷按轴对称稳态自洽场计算（从源出口到焦面整段，E<sub>r</sub> = λ<sub>enc</sub>/(2πε₀r)）。主要效果是削弱螺线管聚焦、使焦点后移，灵敏度约 0.9 m/mA。按流强重新设定 B₀ 和收集器位置后：</p>
+  <div class="tbl"><table>
+    <thead><tr><th>未中和流强</th><th>B₀</th><th>收集器 z</th><th>Rb-87 收集效率（丰度 ≥ 99.9%）</th></tr></thead>
+    <tbody>
+      <tr><td class="num">0</td><td class="num">2.785 T</td><td class="num">1.365 m</td><td class="num">100%</td></tr>
+      <tr><td class="num">0.1 mA</td><td class="num">2.785 T</td><td class="num">1.39–1.46 m</td><td class="num">99.97%</td></tr>
+      <tr><td class="num">0.2 mA</td><td class="num">2.82 T</td><td class="num">1.29–1.34 m（孔半径 5.0–5.6 mm）</td><td class="num">100%</td></tr>
+    </tbody>
+  </table></div>
+  <figure><div class="plot" id="pSC"></div><figcaption><span class="tag">图 11</span>B₀ = 2.785 T、孔半径 5.9 mm 时，Rb-87 透过率（实线）和 Rb-85 漏入率（虚线）随收集器位置 z 的变化，不同曲线对应不同的未中和流强。竖虚线为零流强收集器位置。</figcaption></figure>
+  <p><b>设计工作点：</b>无中和 0.1–0.2 mA。收集器 z 按设定流强放置，流强稳定在 ±0.05 mA 以内；单透镜电压随流强微调，补偿漂移段空间电荷的线性部分。</p>
+  <h3>中和运行的设计要求</h3>
+  <p>更高流强需要空间电荷中和。自洽中和计算给出的设计要求：</p>
+  <ul class="tight">
+    <li><b>电子温度：</b>被俘获电子的温度 T<sub>e</sub> ≲ 1–1.5 eV，稳定到 ±0.25 eV。中和后束区残余电势起伏约 T<sub>e</sub>·ln(n<sub>max</sub>/n)，与电流无关，由 T<sub>e</sub> 决定。</li>
+    <li><b>气体与气压：</b>用分子气体（如 N₂）冷却电子；整段平均气压 ≲ 2.4×10⁻⁴ Pa（丰度 ≥ 99.9%）。不采用整体充气，电子由注入或局部充气加差分抽气提供。</li>
+    <li><b>电极：</b>束流磁通管一端为强势垒（源抑制极 −2.5 kV），另一端接电位可控（约 0 V）的泄放电极；收集器前加低压控制环；抑制废束靶二次电子。</li>
+  </ul>
+</section>
+
+<section id="d08">
+  <div class="secno">08 · 容差</div>
+  <h2>误差容差</h2>
+  <p>每一项单独加入时，保证效率 ≥ 99% 且丰度 ≥ 99.9% 的范围（2.785 T）：</p>
+  <div class="tbl"><table>
+    <thead><tr><th>参数</th><th>无校正</th><th>有导向 / 可调收集器</th></tr></thead>
+    <tbody>
+      <tr><td>B₀</td><td class="num">±0.18%</td><td class="num">收集器 z 可调时 2.72–2.83 T</td></tr>
+      <tr><td>源高压</td><td class="num">±0.2%</td><td class="num">同左</td></tr>
+      <tr><td>线圈偏心</td><td class="num">≤ 1 mm</td><td class="num">≤ 5 mm</td></tr>
+      <tr><td>线圈倾斜</td><td class="num">≤ 1 mrad</td><td class="num">≤ 10 mrad</td></tr>
+      <tr><td>源倾斜</td><td class="num">≤ 3 mrad</td><td class="num">≤ 10 mrad</td></tr>
+      <tr><td>源偏心</td><td class="num">≤ 1 mm</td><td class="num">≤ 2 mm</td></tr>
+      <tr><td>源环半径</td><td class="num">±0.5 mm</td><td class="num">±2 mm（收集器后移）</td></tr>
+      <tr><td>发射面残余场（分离光学）</td><td class="num">−10 … +25 mT</td><td class="num">—</td></tr>
+      <tr><td>单透镜处残余场</td><td class="num">≤ 5 mT</td><td class="num">—</td></tr>
+      <tr><td>收集器横向</td><td class="num">±1 mm</td><td class="num">—</td></tr>
+      <tr><td>收集器纵向（零流强）</td><td class="num">−20 … +10 mm</td><td class="num">—</td></tr>
+      <tr><td>收集器纵向（0.1 mA）</td><td class="num">1.385–1.465 m（80 mm）</td><td class="num">—</td></tr>
+      <tr><td>B₀（0.1 mA，收集器在 1.39 m）</td><td class="num">2.785–2.800 T</td><td class="num">—</td></tr>
+      <tr><td>未中和流强波动</td><td class="num">±0.05 mA</td><td class="num">配合高压快速反馈可放宽</td></tr>
+      <tr><td>收集区铷分压</td><td class="num">≤ 10⁻⁷ Pa</td><td class="num">—</td></tr>
+      <tr><td>束晕份额</td><td class="num">&lt; 0.5%</td><td class="num">—</td></tr>
+    </tbody>
+  </table></div>
+  <p>B₀、高压、流强和环半径都通过焦点位置耦合，运行中由收集器 z 平移台和高压微调共同吸收。机械安装指标：线圈对束线机械轴偏心 ≤ 1 mm、倾斜 ≤ 1 mrad；源环半径误差 ≤ 0.5 mm。</p>
+</section>
+
+<section id="d09">
+  <div class="secno">09 · 真空</div>
+  <h2>真空与铷蒸气</h2>
+  <ul class="tight">
+    <li><b>本底气压：</b>≤ 10⁻⁵ Pa（电荷交换损失 &lt; 0.05%，散射污染约 4×10⁻⁵）。</li>
+    <li><b>铷分压：</b>束流区 ≤ 10⁻⁶ Pa（电荷交换损失 &lt; 0.2%），收集区 ≤ 10⁻⁷ Pa。由 ≤ 230 K 冷衬管（石墨涂层）和源区 LN₂ 挡板实现。</li>
+    <li><b>在线监测：</b>780 nm 铷 D2 线多程吸收光谱，灵敏度约 10¹³ m⁻³（约 4×10⁻⁸ Pa）。</li>
+    <li><b>抽气：</b>源室 ≥ 500 L/s（涡轮分子泵 + 冷板），收集室 ≥ 300 L/s；冷衬管是铷的主要抽速。涡轮分子泵放在杂散场 ≤ 5 mT 处（轴向 ≥ 1.5–2 m），或采用主动屏蔽磁体。</li>
+  </ul>
+</section>
+
+<section id="d10">
+  <div class="secno">10 · 产量与扩展</div>
+  <h2>产量与扩展设计</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>运行方式</th><th>总束流</th><th>Rb-87 产量</th><th>铷原料消耗</th></tr></thead>
+    <tbody>
+      <tr><td>本设计，无中和</td><td class="num">0.1–0.2 mA</td><td class="num">2–4 mg/天（约 0.7–1.4 g/年）</td><td class="num">8–16 mg/天</td></tr>
+    </tbody></table></div>
+  <p>一个铷原子钟气室只需毫克量级的 Rb-87，本设计满足原子钟的用量。更高产量的扩展设计（计算结果，无中和上限）：</p>
+  <div class="tbl"><table>
+    <thead><tr><th>扩展设计</th><th>参数</th><th>无中和上限</th></tr></thead>
+    <tbody>
+      <tr><td>本设计</td><td class="num">10 keV，R = 30 mm，1 m × 2.785 T，过轴 3 次</td><td class="num">约 0.3–0.4 mA</td></tr>
+      <tr><td>环半径加倍、过轴 2 次</td><td class="num">10 keV，R = 60 mm，1 m × 1.89 T；源倾斜 ≲ 1 mrad，线圈四极场 ≲ 2.5×10⁻⁴</td><td class="num">约 0.75–0.9 mA</td></tr>
+      <tr><td>放大设计 A</td><td class="num">30 keV，R = 50 mm，1.7 m × 2.8 T</td><td class="num">1–1.5 mA</td></tr>
+      <tr><td>30 keV 相似放大（过轴 2 次）</td><td class="num">30 keV，R = 104 mm，1.73 m × 1.89 T</td><td class="num">约 6 mA</td></tr>
+    </tbody></table></div>
+  <p>无中和上限主要随 E<sup>1.5</sup> 增长；螺旋角 ψ = K·R 不变时与 R 无关。减少线圈内过轴次数（3 → 2）也能提高上限，受 ψ = α·R₀/L ≲ 0.35 限制。在中和条件下，达到 10 / 100 mA 所需的电荷中和度分别约 88% / 99%（以放大设计 A 为基础）。</p>
+</section>
+
+<section id="d11">
+  <div class="secno">11 · 成本</div>
+  <h2>成本估算</h2>
+  <ul class="tight">
+    <li><b>离子源：</b>源本体加电源约 30–60 万元人民币。</li>
+    <li><b>磁体：</b>3 T 级、1 m 长的无液氦 NbTi 螺线管，200–400 万元人民币（不含真空室和电源）。束流最大半径 30 mm，询价时可同时比较室温孔 180 mm 与 100–120 mm 两种规格：后者储能约 40 kJ，价格约减半，杂散场也更小，但需按实际线圈尺寸复核场形。</li>
+    <li><b>对比：</b>传统 180° 二极磁铁分离器需要 1–2 m² 磁极、数十吨铁轭、50–200 kW 励磁功率；本设计磁体在持续电流模式下只需约 10 kW 制冷机，真空室为 φ200 mm × 2 m 圆管。</li>
+  </ul>
+  <p style="color:var(--muted);font-size:13px">成本为量级估计，未询价。</p>
+</section>
+
+<section id="d99">
+  <div class="secno">附录 · 计算方法</div>
+  <h2>计算方法</h2>
+  <ul class="tight">
+    <li><b>磁场：</b>厚螺线管离散为 250×4 个电流环，用完全椭圆积分计算 B<sub>r</sub>、B<sub>z</sub>，在 (r,z) 网格（1 mm × 2 mm）上插值，含完整边缘场。</li>
+    <li><b>追踪：</b>Boris 推进器，步长 ω<sub>c</sub>Δt = 0.02，三维洛伦兹力，不做近轴近似。</li>
+    <li><b>离子源：</b>轴对称静电场求解加离子追踪，源内空间电荷自洽；出口相空间直接作为分离器追踪的初始条件。</li>
+    <li><b>空间电荷：</b>轴对称稳态 E<sub>r</sub> = λ<sub>enc</sub>/(2πε₀r)，从源出口到焦面整段自洽迭代。</li>
+    <li><b>线圈误差：</b>对场图做坐标平移和旋转；导向器为均匀横向电场板。</li>
+    <li><b>散射与电荷交换：</b>在 38 个 z 位置、每处 4000 个离子上施加一次事件后继续追踪；溅射原子用含多次反射和粘附系数的中性输运蒙特卡罗。</li>
+    <li><b>统计：</b>每种同位素 10⁴ 个粒子；丰度 99.9% 附近的分辨率约 ±0.03%。</li>
+  </ul>
+  <p>代码和数据在项目文件夹 <span class="k">solenoid-separator/</span>：<span class="k">source/</span>（离子源）、<span class="k">beamline/</span>（束流线、容差、空间电荷、散射）、<span class="k">neutralization/</span>（中和）、<span class="k">expert_review/newwp/</span>（扩展工作点）。</p>
+</section>
+</div>

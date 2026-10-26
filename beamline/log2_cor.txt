@@ -1,0 +1,6 @@
+src_tilt5+steer | best T=1.0000 a=5.38mm z=1.345 rms=1.52mm c=(-0.03,0.10)mm | fixed T=1.0000 pur=1.00000
+src_tilt10+steer | best T=1.0000 a=5.38mm z=1.345 rms=1.55mm c=(-0.08,0.24)mm | fixed T=0.9998 pur=1.00000
+coil_dx3+steer2 | best T=1.0000 a=5.22mm z=1.345 rms=1.53mm c=(2.78,-0.01)mm | fixed T=0.9725 pur=0.95238
+coil_dx5+steer2 | best T=1.0000 a=5.12mm z=1.345 rms=1.55mm c=(4.63,0.00)mm | fixed T=0.7605 pur=0.73728
+coil_tilt5+steer2 | best T=0.9998 a=4.90mm z=1.342 rms=1.57mm c=(4.63,-0.07)mm | fixed T=0.7360 pur=0.80729
+coil_tilt10+steer2 | best T=0.9955 a=4.27mm z=1.330 rms=1.96mm c=(9.15,-0.10)mm | fixed T=0.0118 pur=0.02685

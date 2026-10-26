@@ -1,0 +1,383 @@
+<title>螺线管分离器束流线</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;800&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+{{CSS}}
+/* 本页补充 */
+.plot svg{display:block;width:100%;height:100%}
+.plot.short{height:280px}
+.schem{background:var(--panel);border:1px solid var(--rule);overflow-x:auto}
+.schem svg{display:block;min-width:820px;width:100%;height:auto}
+.ok{color:var(--s3);font-weight:700}
+.bad{color:var(--warn);font-weight:700}
+ol.steps{margin:0;padding-left:1.4em;display:grid;gap:6px;max-width:76ch}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">螺线管同位素分离器 · Rb-87 · 第三轮：束流线</div>
+  <h1>离子源出口到收集器的束流线设计</h1>
+  <p class="lede">在第 13–14 节环形平行离子源的基础上，计算源出口（z = −0.6 m）到收集器（z = 1.365 m）之间的全部束流光学和工程条件：漂移段与边缘场、导向校正、诊断、收集器与废束、空间电荷和中和、真空与中性铷、误差容差。所有数值来自全三维 Boris 追踪，源相空间取自 0.3 mA 自洽引出计算。主报告见 <a href="https://claude.ai/artifact/So4aw2nHeCiY5xiDuHRvyg" target="_blank" rel="noopener">螺线管同位素分离器</a>。</p>
+  <div class="kpis">
+    <div class="kpi"><b>2.785 T</b><span>工作点（收集器固定时窗口中心），窗口 ±0.18%</span></div>
+    <div class="kpi"><b>5.5 → 7.4 mm</b><span>焦面上 Rb-87 最大半径与 Rb-85 最小半径，孔半径取 5.9 mm</span></div>
+    <div class="kpi"><b>0.9 m/mA</b><span>未中和流强引起的焦点后移，0.3 mA 为上限</span></div>
+    <div class="kpi"><b>≤ 4×10⁻⁷ Pa</b><span>收集器附近铷蒸气分压上限（冷壁 ≤ 250 K）</span></div>
+  </div>
+</header>
+
+<section id="summary">
+  <div class="secno">00 · 结论</div>
+  <h2>要点</h2>
+  <ul class="tight">
+    <li><b>束流线本身很短、很简单。</b>源出口到线圈入口 0.6 m 漂移，线圈 1 m，焦面在线圈后 0.365 m。不需要四极或匹配透镜：唯一的“匹配”条件是环形束平行入射且正则角动量为零，源的单透镜和 B₀ 两个旋钮就够了。</li>
+    <li><b>边缘场不需要屏蔽。</b>发射面处的边缘场是 16 mT，但模拟表明发射面残余场在 −10 到 +25 mT 范围内收集效率都在 99.98% 以上。第一轮给出的 “≤ 10 mT” 是对假设的 4 mrad 源算的，真实源更宽松。补偿线圈（约 2 kA·匝）可以作为可选的微调手段。</li>
+    <li><b>对准靠两组静电导向器加可移动收集器。</b>线圈偏心 1 mm 或倾斜 1 mrad 都会使焦斑移动约 1 mm，而收集孔的横向容差是 ±1 mm。用两组静电导向器（每组约 ±250 V）把环形束对到磁轴上，再把收集器移到磁轴，可以完全校正 5 mm 偏心或 10 mrad 倾斜。</li>
+    <li><b>Rb-85 的散射本身不是主要污染源，热铷原子才是。</b>电荷交换产生的快中性 Rb-85 一个也没有进入收集孔；只有大于 10 mrad 的弹性散射能把 Rb-85 送进孔里，在 10⁻⁵ Pa 时贡献约 5×10⁻⁶。真正的风险是收集孔附近的天然铷蒸气直接沉积到产品上：室温饱和铷蒸气会让丰度掉到 1% 以下，必须把收集区和废束靶冷到 ≤ 230–250 K。</li>
+    <li><b>流强是这台机器最紧的约束。</b>未中和当量流强每增加 0.1 mA，焦点后移约 9 cm；收集器固定时只能容许 ±0.05 mA 的波动。要达到电磁分离器的数十 mA 级，需要同时提高能量（极限流强 ∝ E^1.5，40 keV 时约 2.4 mA）、引入中和度 ≥ 90% 且稳定的电子中和，以及多台并联。中和是下一步必须做实验的部分。</li>
+  </ul>
+</section>
+
+<section id="layout">
+  <div class="secno">01 · 布局</div>
+  <h2>束流线布局</h2>
+  <p>下图按比例画出 z 轴（螺线管线圈在 0–1 m）。环形束在漂移段保持约 30 mm 半径，进入线圈后在 Larmor 坐标里会聚，Rb-87 在 z = 1.365 m 汇聚到轴上，Rb-85 形成 7–16 mm 的环。</p>
+  <div class="schem"><svg id="schem" viewBox="0 0 1000 330" role="img" aria-label="束流线布局示意图"></svg></div>
+  <div class="tbl"><table>
+    <thead><tr><th>元件</th><th>位置 z (m)</th><th>参数</th><th>作用</th></tr></thead>
+    <tbody>
+      <tr><td>环形离子源（第 13–14 节）</td><td class="num">−0.685 发射面<br>−0.60 出口</td><td>R = 30 mm，+10 kV，单透镜 −16 kV</td><td>单透镜同时是 −14 kV 的电子势垒，下游中和电子不会流回源区</td></tr>
+      <tr><td>冷挡板 / 铷阱 C1</td><td class="num">−0.58</td><td>环形缝 8 mm，LN₂ 或 ≤ 200 K</td><td>截留从电离器蒸发的中性铷，把源室与束线的铷蒸气隔开</td></tr>
+      <tr><td>导向器 ST1（x/y）</td><td class="num">−0.575 … −0.525</td><td>平板间距 120 mm，长 50 mm，±240 V ↔ ±10 mrad</td><td>校正源倾斜；与 ST2 组合实现平移</td></tr>
+      <tr><td>诊断站 D1（可插入）</td><td class="num">−0.45</td><td>8 扇区环形法拉第杯 + 环形狭缝角度探头</td><td>总流强、方位均匀性、环心位置、径向/方位角散</td></tr>
+      <tr><td>导向器 ST2（x/y）</td><td class="num">−0.275 … −0.225</td><td>同 ST1，处在约 0.1 T 边缘场中</td><td>与 ST1 一起把环对到磁轴上（位置 + 角度）</td></tr>
+      <tr><td>诊断站 D2（可插入）</td><td class="num">−0.15</td><td>荧光屏 / MCP 成像，四象限环形探头</td><td>进入线圈前的环心和环宽</td></tr>
+      <tr><td>超导螺线管</td><td class="num">0 … 1.0</td><td>2.785 T，线圈 r 100–130 mm，室温孔 ≥ 180 mm</td><td>质量相关透镜</td></tr>
+      <tr><td>冷衬管 L</td><td class="num">−0.2 … 1.5</td><td>内径 ≥ 150 mm，≤ 230 K，内壁石墨涂层</td><td>吸附铷，压低束流区铷蒸气；兼作中和区的接地边界</td></tr>
+      <tr><td>电子抑制环 E2</td><td class="num">≈ 1.28</td><td>内径 40 mm，−300 V</td><td>把中和电子关在线圈区，挡住收集器二次电子</td></tr>
+      <tr><td>收集器（见第 06 节）</td><td class="num">1.365</td><td>孔半径 5.9 mm，x/y 平移 ±10 mm，z 平移 ±50 mm</td><td>Rb-87 进孔，Rb-85 落在环形废束靶</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="envelope">
+  <div class="secno">02 · 束流包络</div>
+  <h2>从源出口到焦面</h2>
+  <p>上图是轴上磁场，下图是两种同位素的半径分布（阴影为 5%–95% 分位，实线为中位数）。线圈前的漂移段里，源出口自带的 −3.3 mrad 向内会聚加上边缘场，使环半径从 29.9 mm 缩到线圈入口处的约 26 mm。进入线圈后，零正则角动量的离子在实验室系里做回旋运动，每圈都经过轴附近（回旋波长约 0.3 m），所以 r 在约 4 mm 和 25 mm 之间振荡；所有离子同相，只是两种同位素的相位逐渐错开。到焦面上 Rb-87 回到轴上，Rb-85 落在 7–16 mm。线圈前的漂移段里两种同位素完全重合，导向器和诊断不需要区分质量。</p>
+  <div class="grid2">
+    <figure><div class="plot short" id="pField"></div><figcaption><span class="tag">图 1</span>轴上 B<sub>z</sub>(z)，2.785 T。灰色带为线圈。发射面（z = −0.685 m）处为 16 mT。</figcaption></figure>
+    <figure><div class="plot short" id="pEnv"></div><figcaption><span class="tag">图 2</span>离子半径 r(z)，零流强。橙色 Rb-87，蓝色 Rb-85，竖虚线为收集器。</figcaption></figure>
+  </div>
+</section>
+
+<section id="fringe">
+  <div class="secno">03 · 边缘场</div>
+  <h2>源区边缘场和漂移长度</h2>
+  <p>按 Busch 定理，离子进入螺线管后获得的方位速度由发射面上通过环的磁通决定。理想情况是发射面无场，第一轮据此要求残余场 ≤ 10 mT。用真实源分布重新扫描后，容差明显放宽：</p>
+  <div class="tbl"><table>
+    <thead><tr><th>发射面残余场（等效均匀场）</th><th>−10 mT</th><th>−5</th><th>0</th><th>+5</th><th>+10</th><th>+16.4（不屏蔽）</th><th>+25</th></tr></thead>
+    <tbody>
+      <tr><td>Rb-87 效率，收集器固定</td><td class="num">99.98%</td><td class="num">100%</td><td class="num">100%</td><td class="num">100%</td><td class="num">100%</td><td class="num">100%</td><td class="num">99.98%</td></tr>
+      <tr><td>丰度</td><td class="num" colspan="7">全部 ≥ 99.97%（10⁴ 粒子中无 Rb-85 进孔）</td></tr>
+    </tbody>
+  </table></div>
+  <p>因此源可以直接放在 z = −0.6 m 处的 16 mT 边缘场里，不需要软铁屏蔽（软铁靠近 2.8 T 线圈还会带来很大的力和非对称场）。如果后续实验希望把这一项调零，可以在源外加一个半径 80 mm、约 2050 安匝的反向补偿线圈，它在发射面前后 ±2 mm 内残余不超过 0.1 mT，对线圈中心的场影响只有 5 μT。</p>
+  <p>漂移长度也不敏感。源出口放在 z = −0.4、−0.6、−0.8、−0.9 m 时，重新选焦面后 Rb-87 效率都是 99.9% 以上，焦斑 rms 从 1.5 mm 缓慢增大到 1.8 mm。选 0.6 m 是为了给冷挡板、两组导向器和两个诊断站留出空间。</p>
+</section>
+
+<section id="tuning">
+  <div class="secno">04 · 调谐</div>
+  <h2>磁场与高压窗口</h2>
+  <p>收集器固定（z = 1.365 m，孔半径 5.9 mm）时扫描 B₀，孔内电流本身就是一张质谱：Rb-85 在 2.735–2.755 T 进孔，Rb-87 在 2.775–2.790 T 进孔，两个峰都是平顶。这就是调机的第一步，也是在线丰度监测的手段。</p>
+  <figure><div class="plot" id="pB"></div><figcaption><span class="tag">图 3</span>孔内透过率与 B₀。橙色 Rb-87，蓝色 Rb-85（未乘丰度）。绿色带为效率 ≥ 99.5% 且丰度 ≥ 99.9% 的工作窗口 2.780–2.790 T。</figcaption></figure>
+  <p>Larmor 相位取决于 B/√E，所以加速电压误差等价于磁场误差的两倍。在 2.785 T 工作点：</p>
+  <div class="tbl"><table>
+    <thead><tr><th>参数</th><th>可用范围（效率 ≥ 99.5%，丰度 ≥ 99.9%）</th><th>对设备的要求</th></tr></thead>
+    <tbody>
+      <tr><td>B₀</td><td class="num">2.780 – 2.790 T（±0.18%）</td><td>持续电流模式漂移 &lt; 10⁻⁵/h，没有问题</td></tr>
+      <tr><td>源高压 10 kV</td><td class="num">±0.2%（±20 V）；±0.5% 时效率或丰度降到 98–99%</td><td>普通 10⁻⁴ 级高压电源即可；纹波 &lt; 10 V</td></tr>
+      <tr><td>单透镜电压</td><td class="num">±1 kV（第 13 节）</td><td>无特殊要求</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="align">
+  <div class="secno">05 · 对准与导向</div>
+  <h2>对准误差和静电导向器</h2>
+  <p>螺线管只在环形束以磁轴为中心时才是理想的质量透镜。下表给出各种对准误差的影响。“收集器固定”指孔仍在机械轴上；“收集器对中”指把孔移到 Rb-87 焦斑中心；“加导向”指用 ST1/ST2 校正后再对中。</p>
+  <div class="tbl"><table>
+    <thead><tr><th>误差</th><th>焦斑位移</th><th>收集器固定<br>效率 / 丰度</th><th>收集器对中<br>效率 / 丰度</th><th>加导向后<br>效率 / 丰度</th></tr></thead>
+    <tbody id="misT"></tbody>
+  </table></div>
+  <p>几点结论：</p>
+  <ul class="tight">
+    <li><b>线圈误差比源误差危险。</b>线圈偏心或倾斜时焦斑跟着磁轴走，偏移量和误差同量级（1 mm 偏心 → 1.3 mm，1 mrad 倾斜 → 1 mm）。源倾斜同样破坏轴对称，但焦斑位移小得多，主要是焦斑变大。</li>
+    <li><b>导向器是必要的。</b>源倾斜用 ST1 一组即可抵消；线圈偏心和倾斜要用 ST1、ST2 两组把环的中心线放到磁轴上（位置和角度都要对），然后收集器跟着磁轴走。静电导向对两种同位素给出相同的偏转角（同能量），不会引入额外的质量相关误差。</li>
+    <li><b>机械安装指标：</b>线圈对束线机械轴偏心 ≤ 1 mm、倾斜 ≤ 1 mrad 时不需要导向就能用；有导向时可以放宽到 5 mm / 10 mrad。源环半径误差 ≤ 0.5 mm，环宽方向的机械对中 ≤ 1 mm。</li>
+    <li><b>导向器规格：</b>10 keV 离子要偏转 θ，平板场 E = 2Vθ/L。L = 50 mm、10 mrad 需要 4 kV/m，120 mm 板距对应 ±240 V。为了照顾直径 60 mm 的环，平板宽度取 ≥ 150 mm，或用 8 电极圆柱形导向器保证场均匀。</li>
+  </ul>
+  <h3>束流对中步骤（基于束流的对准）</h3>
+  <ol class="steps">
+    <li>低流强（≤ 1 μA）下用 D1、D2 的扇区法拉第杯把环心对到机械轴（ST1/ST2）。</li>
+    <li>在 B₀ = 2.70–2.85 T 之间扫描，用收集器处的荧光屏或分段收集器记录 Rb-87 焦斑中心。环心不在磁轴上时，焦斑中心随 B₀ 移动。</li>
+    <li>调节 ST1/ST2，使焦斑中心不随 B₀ 移动，此时环已对在磁轴上；把收集器平移到该点。</li>
+    <li>回到 2.785 T，按图 3 的质谱确认两个峰的位置和平顶宽度。</li>
+  </ol>
+</section>
+
+<section id="collector">
+  <div class="secno">06 · 收集器</div>
+  <h2>收集器与废束几何</h2>
+  <p>在 2.785 T、z = 1.365 m 处，10⁴ 个 Rb-87 的最大半径 5.52 mm，10⁴ 个 Rb-85 的最小半径 7.36 mm，中间有 1.8 mm 的空带。孔半径取 5.9 mm。</p>
+  <div class="schem"><svg id="colsvg" viewBox="0 0 1000 300" role="img" aria-label="收集器截面示意图"></svg></div>
+  <div class="tbl"><table>
+    <thead><tr><th>项目</th><th>数值</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>孔半径</td><td class="num">5.9 mm</td><td>取 5.5–6.5 mm 都可（5.0 mm 时效率 99.8%）</td></tr>
+      <tr><td>横向对中容差</td><td class="num">±1.0 mm</td><td>效率 99.94%，丰度不变</td></tr>
+      <tr><td>纵向位置容差</td><td class="num">−20 … +10 mm</td><td>往前 30 mm 时 Rb-85 开始进孔（丰度 89%），往后 30 mm 时效率降到 96%</td></tr>
+      <tr><td>Rb-87 在焦面的会聚角</td><td class="num">70 mrad rms，最大 86 mrad</td><td>孔后 85 mm 处已发散到 12 mm 半径，需要接收口袋</td></tr>
+      <tr><td>Rb-85 落点</td><td class="num">r = 7.4 – 16.3 mm</td><td>废束靶外半径 ≥ 25 mm 留余量</td></tr>
+      <tr><td>废束功率</td><td class="num">2.2 W @ 0.3 mA；220 W @ 30 mA</td><td>小流强时自然冷却，大流强需水冷</td></tr>
+    </tbody>
+  </table></div>
+  <h3>设计要点</h3>
+  <ul class="tight">
+    <li><b>锥形孔嘴。</b>孔口做成向上游伸出 10 mm 的薄壁锥（刀口），废束靶表面退在孔口后面。废束靶上溅射出来的 Rb-85 原子按余弦分布飞向上游，看不到孔口，没有直接进入产品口袋的视线。</li>
+    <li><b>Rb-87 减速口袋。</b>孔后接一个绝缘的圆柱口袋（内径 30 mm、深 100 mm），偏压 +9.7 kV，离子以约 300 eV 落在冷的口袋底面。离子的横向动能最多约 75 eV，300 eV 的落地能量保证不会被反射。减速后溅射产额从 10 keV 的约 1–2 降到约 0.2，铷可以以金属形式积累；口袋同时排斥束流区产生的慢离子（天然丰度的电荷交换离子），并直接给出 Rb-87 电流读数。</li>
+    <li><b>废束靶用石墨，冷到 ≤ 230 K。</b>每天沉积约 17 mg Rb-85（0.3 mA 时），如果靶在室温，金属铷的蒸气压（5×10⁻⁵ Pa）会让废束靶本身成为紧挨着收集孔的天然铷源。石墨能把铷以插层化合物形式固定住，低温进一步压低蒸气压。</li>
+    <li><b>分段读出。</b>孔口外 5.9–7 mm 做成四象限保护环，靶面分 4 个扇区；四象限信号给出焦斑中心，作为导向器和收集器平移台的反馈信号。</li>
+  </ul>
+</section>
+
+<section id="sc">
+  <div class="secno">07 · 空间电荷</div>
+  <h2>空间电荷输运与中和</h2>
+  <p>用轴对称稳态自洽场（从源出口到焦面整段，迭代 5 次）计算不同未中和当量流强 I<sub>eff</sub> = I(1−f) 下的输运。主要效果是削弱螺线管聚焦，使焦点后移：</p>
+  <figure><div class="plot" id="pSC"></div><figcaption><span class="tag">图 4</span>B₀ = 2.785 T、孔半径 5.9 mm 时，Rb-87 透过率（实线）和 Rb-85 漏入率（虚线）随收集器位置 z 的变化。竖虚线为设计收集器位置。</figcaption></figure>
+  <div class="tbl"><table>
+    <thead><tr><th>I<sub>eff</sub></th><th>最佳焦面</th><th>收集器重新定位后</th><th>收集器固定在 1.365 m</th></tr></thead>
+    <tbody>
+      <tr><td class="num">0</td><td class="num">1.35 m</td><td>效率 100%，丰度 ≥ 99.97%</td><td>效率 99.98%，丰度 ≥ 99.97%</td></tr>
+      <tr><td class="num">0.05 mA</td><td class="num">1.39 m</td><td>100%</td><td class="ok">99.98%，丰度 ≥ 99.97%</td></tr>
+      <tr><td class="num">0.1 mA</td><td class="num">1.44 m</td><td>100%（孔半径 6.9 mm）</td><td class="bad">Rb-85 漏入 64%，失效</td></tr>
+      <tr><td class="num">0.2 mA</td><td class="num">1.59 m</td><td>100%（孔半径 11.5 mm）</td><td class="bad">失效</td></tr>
+      <tr><td class="num">0.3 mA</td><td class="num">—</td><td>2.785 T 失效；重调到 2.84 T 后 98.9%</td><td class="bad">失效</td></tr>
+      <tr><td class="num">0.5–1 mA</td><td class="num">—</td><td colspan="2" class="bad">2.78–2.84 T 范围内均失效</td></tr>
+    </tbody>
+  </table></div>
+  <p>结论分两层。第一，未中和时单束上限约 0.3 mA（需要把 B₀ 提到 2.84 T 并后移收集器），和第 08 节结论一致。第二，焦点对流强非常敏感，约 0.9 m/mA。这意味着即使用中和把等效流强压下来，<b>中和度的波动</b>也必须很小：收集器固定时 I<sub>eff</sub> 只能有 ±0.05 mA 的变化。对 30 mA 的总束流，这相当于中和度稳定在 ±0.17% 以内。</p>
+  <h3>中和方案</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>方案</th><th>做法</th><th>优点</th><th>问题</th></tr></thead>
+    <tbody>
+      <tr><td>残余气体自中和</td><td>束流电离残余气体，电子被束流势阱俘获。两端由单透镜（−14 kV 势垒）和 E2 抑制环（−300 V）封住</td><td>电磁分离器的标准做法，结构最简单</td><td>10⁻⁴ Pa 的 N₂ 下建立时间约 0.3 s；中和度由气压决定，不易稳定在 0.1% 级。螺线管中电子被磁化，只能沿磁力线运动，而离子会穿越磁力线（从 r = 30 mm 汇聚到轴），局部中和不完整</td></tr>
+      <tr><td>注入电子 + 主动反馈</td><td>在线圈入口边缘场中放环形热阴极（LaB₆），沿磁力线向束流区注入电子；用收集器四象限 / Rb-85 环半径作为信号反馈阴极发射</td><td>中和度可以调，可以闭环</td><td>需要实验确认电子在束流区的分布能否跟随离子的径向运动；可能激发二极管（diocotron）不稳定性</td></tr>
+      <tr><td>快速焦点反馈</td><td>不追求完全中和，而用高压（10 kV ±50 V，响应 ms 级）或线圈内的小修正线圈实时补偿焦点漂移</td><td>与前两者叠加使用，把容差从 ±0.05 mA 放宽到中和本身的不对称极限</td><td>只能补偿焦点平移，补不了非线性空间电荷造成的焦斑变大</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="vacuum">
+  <div class="secno">08 · 真空与中性铷</div>
+  <h2>电荷交换、散射与铷蒸气</h2>
+  <p>为了确定真空要求，模拟了 Rb-85 和 Rb-87 离子在束流线上任一点发生一次碰撞后的去向：电荷交换后变成快中性原子，沿直线飞行；弹性散射则给离子一个随机方向的偏转角，再在磁场中继续追踪。</p>
+  <figure><div class="plot" id="pScat"></div><figcaption><span class="tag">图 5</span>在 z 处发生一次事件后，Rb-85 落进收集孔的概率。实线为 10、20、50 mrad 的弹性散射；电荷交换快中性在所有位置都是 0（4000 个中无一进孔）。灰线为 Rb-87 电荷交换后仍进孔的概率（仅在 z ≥ 1.15 m 处形成的中性原子能进孔）。</figcaption></figure>
+  <p>结果说明：电荷交换产生的 Rb-85 快中性原子沿直线飞行，落在 Rb-85 环的外侧，不会污染产品；≤ 5 mrad 的小角散射也不会。只有 ≥ 10 mrad 的散射，平均约 1%–7% 落进孔里。由此得到的丰度预算：</p>
+  <div class="tbl"><table>
+    <thead><tr><th>污染途径</th><th>条件</th><th>对 Rb-87 产品的 Rb-85 含量</th></tr></thead>
+    <tbody>
+      <tr><td>残余气体大角散射</td><td>10⁻⁵ Pa N₂/H₂O，σ(&gt;10 mrad) ~ 10⁻¹⁶ cm²</td><td class="num">~5×10⁻⁶</td></tr>
+      <tr><td>铷蒸气大角散射</td><td>束流区铷分压 10⁻⁷ Pa（250 K 冷衬管）</td><td class="num">~5×10⁻⁷</td></tr>
+      <tr><td>快中性（电荷交换）</td><td>任意气压</td><td class="num">≈ 0</td></tr>
+      <tr><td>源的未电离铷直射</td><td>电离效率 95%，孔对发射环的立体角 8×10⁻⁶</td><td class="num">~1×10⁻⁶</td></tr>
+      <tr><td><b>热铷原子直接沉积在口袋里</b></td><td>收集区铷分压 P，口袋开口 1.1 cm²</td><td class="num"><b>P = 4×10⁻⁷ Pa 时 10⁻³</b>；室温饱和（5×10⁻⁵ Pa）时产品被天然铷淹没</td></tr>
+      <tr><td>废束靶溅射</td><td>无视线几何 + 冷壁吸附</td><td class="num">&lt; 10⁻⁵（几何估计）</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grid2">
+    <figure><div class="plot short" id="pVap"></div><figcaption><span class="tag">图 6</span>金属铷饱和蒸气压与壁温。橙色虚线为收集区上限 4×10⁻⁷ Pa，对应壁温约 255 K；留 10 倍余量取 ≤ 230 K。</figcaption></figure>
+    <div style="display:grid;gap:10px;align-content:start">
+      <p><b>真空要求：</b></p>
+      <ul class="tight">
+        <li>本底气压 ≤ 10⁻⁵ Pa（电荷交换损失 &lt; 0.05%，散射污染 ~5×10⁻⁶）。如果采用残余气体中和，可以有意提高到 10⁻⁴ Pa，代价是 0.5% 的束流损失。</li>
+        <li>铷分压：束流区 ≤ 10⁻⁶ Pa（电荷交换损失 &lt; 0.2%），收集区 ≤ 4×10⁻⁷ Pa。室温壁做不到，靠 230 K 冷衬管（石墨涂层）加源区 LN₂ 挡板实现。</li>
+        <li>在线监测：780 nm 铷 D2 线吸收光谱，多程光路下对 10¹³ m⁻³（约 4×10⁻⁸ Pa）有灵敏度，可以直接看收集区铷密度。</li>
+        <li>抽气：源室 ≥ 500 L/s（涡轮分子泵 + 冷板），收集室 ≥ 300 L/s；冷衬管本身是铷的主要抽速。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="scale">
+  <div class="secno">09 · 流强扩展</div>
+  <h2>向电磁分离器流强的扩展路线</h2>
+  <p>在角散不变的前提下，把能量 E 和场强 B ∝ √E 一起放大，轨迹完全相似，空间电荷极限流强严格按 E<sup>1.5</sup> 增长（广义导流系数 ∝ I/v³）。由此可以估计每个环形束的流强：</p>
+  <div class="tbl"><table>
+    <thead><tr><th>能量</th><th>B₀</th><th>未中和极限</th><th>中和度 90%</th><th>中和度 99%</th><th>Rb-87 产量（中和 90%）</th></tr></thead>
+    <tbody>
+      <tr><td class="num">10 keV</td><td class="num">2.79 T</td><td class="num">0.3 mA</td><td class="num">3 mA</td><td class="num">30 mA</td><td class="num">0.065 g/天</td></tr>
+      <tr><td class="num">20 keV</td><td class="num">3.94 T</td><td class="num">0.85 mA</td><td class="num">8.5 mA</td><td class="num">85 mA</td><td class="num">0.18 g/天</td></tr>
+      <tr><td class="num">40 keV</td><td class="num">5.57 T</td><td class="num">2.4 mA</td><td class="num">24 mA</td><td class="num">240 mA</td><td class="num">0.52 g/天</td></tr>
+    </tbody>
+  </table></div>
+  <p>产量按 Rb⁺ 中 27.8% 为 Rb-87、收集效率 100% 估算。40 keV / 5.6 T 对 NbTi 无液氦线圈仍然是常规参数，但源需要 40 kV 引出、源的发射面积和 Child 极限（目前约 2.5 mA）也要同步放大，这部分由离子源讨论串负责。表中带中和的数值都假设中和后焦斑不变坏、中和度足够稳定，这正是需要实验验证的部分。我的判断是：40 keV 加 90% 中和，单台做到 20 mA 级是合理的目标，再往上靠多台并联。</p>
+</section>
+
+<section id="budget">
+  <div class="secno">10 · 容差汇总</div>
+  <h2>误差容差汇总</h2>
+  <p>每一项单独加入时，保证效率 ≥ 99% 且丰度 ≥ 99.9% 的范围（2.785 T，0.3 mA 源分布，零流强输运）：</p>
+  <div class="tbl"><table>
+    <thead><tr><th>参数</th><th>无校正</th><th>有导向 / 可调收集器</th></tr></thead>
+    <tbody>
+      <tr><td>B₀</td><td class="num">±0.18%</td><td class="num">任意（收集器 z 可调时 2.72–2.83 T 都能 100% 分离）</td></tr>
+      <tr><td>源高压</td><td class="num">±0.2%</td><td class="num">同左</td></tr>
+      <tr><td>线圈偏心</td><td class="num">≤ 1 mm</td><td class="num">≤ 5 mm</td></tr>
+      <tr><td>线圈倾斜</td><td class="num">≤ 1 mrad</td><td class="num">≤ 10 mrad</td></tr>
+      <tr><td>源倾斜</td><td class="num">≤ 3 mrad</td><td class="num">≤ 10 mrad</td></tr>
+      <tr><td>源偏心</td><td class="num">≤ 1 mm</td><td class="num">≤ 2 mm（导向可进一步改善）</td></tr>
+      <tr><td>源环半径</td><td class="num">±0.5 mm</td><td class="num">±2 mm（收集器后移）</td></tr>
+      <tr><td>发射面残余场</td><td class="num">−10 … +25 mT</td><td class="num">—</td></tr>
+      <tr><td>收集器横向</td><td class="num">±1 mm</td><td class="num">—</td></tr>
+      <tr><td>收集器纵向</td><td class="num">−20 … +10 mm</td><td class="num">—</td></tr>
+      <tr><td>未中和当量流强波动</td><td class="num">±0.05 mA</td><td class="num">配合高压快速反馈可放宽</td></tr>
+      <tr><td>收集区铷分压</td><td class="num">≤ 4×10⁻⁷ Pa</td><td class="num">—</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">没有做多误差同时加入的蒙特卡洛。各项之间主要通过焦点位置耦合（B₀、高压、流强、环半径都移动焦点），所以实际运行时它们共享 −20…+10 mm 的纵向容差；可调的高压或收集器 z 平移台可以一起吸收这些漂移。</p>
+</section>
+
+<section id="next">
+  <div class="secno">11 · 下一步</div>
+  <h2>建议</h2>
+  <ul class="tight">
+    <li>中和实验是决定流强的关键：在现有 1–3 T 螺线管上，用 0.1–3 mA 的离子束测量焦点位置随气压、电子注入的变化。</li>
+    <li>收集器的减速口袋和刀口孔嘴需要用静电求解器做一次带孔的三维校核，确认口袋的场不会穿过孔口偏转 Rb-85。</li>
+    <li>线圈的实际误差场（制造公差带来的非轴对称谐波）应在采购时测量，并用本页的代码算一次。</li>
+  </ul>
+</section>
+
+<section id="method">
+  <div class="secno">附录</div>
+  <h2>方法与文件</h2>
+  <p>磁场、追踪方法同主报告（250×4 电流环，椭圆积分，Boris 推进器，ω<sub>c</sub>Δt = 0.02）。源相空间重新运行了第 13 节的引出计算（0.3 mA 自洽，6000 个粒子；第 14 节的圆角电极修订不改变出口束流品质）。线圈误差通过对场图做坐标平移和旋转实现；导向器为均匀横向电场板；空间电荷为轴对称稳态 E<sub>r</sub> = λ<sub>enc</sub>/(2πε₀r)，从源出口到焦面整段自洽；散射模拟在 38 个 z 位置、每处 4000 个离子上施加一次事件。截面数值（铷共振电荷交换 ~3×10⁻¹⁴ cm²、N₂ 上 &gt;10 mrad 散射 ~10⁻¹⁶ cm²）是量级估计，相应结果只有数量级意义。统计：基准 10⁴ 粒子/同位素，扫描 4000 粒子/同位素，丰度 99.9% 附近的分辨率约 ±0.03%。</p>
+  <p>代码和数据在项目文件夹 <span class="k">solenoid-separator/beamline/</span>：<span class="k">bl.py</span>（束流、线圈误差、导向器、收集器评估）、<span class="k">jobs.py</span>（扫描）、<span class="k">sc3.py</span>（空间电荷）、<span class="k">scat.py</span>（散射/电荷交换）、<span class="k">buck.py</span>（边缘场与补偿线圈）、<span class="k">vac.py</span>，结果在 <span class="k">res2_*.json</span>、<span class="k">res_sc.json</span>、<span class="k">scat.json</span>。</p>
+</section>
+</div>
+
+<script>
+const D={{DATA}};
+const MIS={{MIS}};
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const NS='http://www.w3.org/2000/svg';
+function el(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+function txt(p,x,y,s,o={}){const t=el('text',Object.assign({x,y,fill:o.fill||css('--fg2'),'font-size':o.size||12,'text-anchor':o.anchor||'start'},o.extra||{}),p);t.textContent=s;return t}
+function plot(id,o){
+  const box=document.getElementById(id);box.innerHTML='';
+  const W=box.clientWidth||600,H=box.clientHeight||300,m={l:58,r:16,t:14,b:44};
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`},box);
+  const [x0,x1]=o.xr,[y0,y1]=o.yr,lg=o.ylog;
+  const X=x=>m.l+(x-x0)/(x1-x0)*(W-m.l-m.r);
+  const Y=y=>{const v=lg?(Math.log10(y)-Math.log10(y0))/(Math.log10(y1)-Math.log10(y0)):(y-y0)/(y1-y0);return H-m.b-v*(H-m.t-m.b)};
+  (o.bands||[]).forEach(b=>{el('rect',{x:X(b[0]),y:m.t,width:X(b[1])-X(b[0]),height:H-m.t-m.b,fill:b[2]||css('--grid'),opacity:b[3]||1},svg)});
+  (o.yt).forEach(v=>{el('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:css('--grid')},svg);txt(svg,m.l-6,Y(v)+4,o.yf?o.yf(v):v,{anchor:'end',size:11})});
+  (o.xt).forEach(v=>{el('line',{x1:X(v),x2:X(v),y1:H-m.b,y2:H-m.b+4,stroke:css('--muted')},svg);txt(svg,X(v),H-m.b+17,o.xf?o.xf(v):v,{anchor:'middle',size:11})});
+  el('line',{x1:m.l,x2:W-m.r,y1:H-m.b,y2:H-m.b,stroke:css('--muted')},svg);
+  txt(svg,(m.l+W-m.r)/2,H-6,o.xl,{anchor:'middle',size:12});
+  const yl=txt(svg,14,(m.t+H-m.b)/2,o.yl,{anchor:'middle',size:12});yl.setAttribute('transform',`rotate(-90 14 ${(m.t+H-m.b)/2})`);
+  (o.vl||[]).forEach(v=>el('line',{x1:X(v),x2:X(v),y1:m.t,y2:H-m.b,stroke:css('--fg2'),'stroke-dasharray':'4 4'},svg));
+  (o.fills||[]).forEach(f=>{let d='';const ix=f.x.map((x,i)=>i).filter(i=>f.lo[i]!=null&&f.hi[i]!=null);ix.forEach((i,j)=>d+=(j?'L':'M')+X(f.x[i])+','+Y(f.lo[i]));ix.slice().reverse().forEach(i=>d+='L'+X(f.x[i])+','+Y(f.hi[i]));el('path',{d:d+'Z',fill:f.c,opacity:.22},svg)});
+  (o.series||[]).forEach(s=>{let d='';s.x.forEach((x,i)=>{const y=s.y[i];if(y==null||!isFinite(y)||(lg&&y<=0))return;d+=(d?'L':'M')+X(x).toFixed(1)+','+Y(Math.min(Math.max(y,y0),y1)).toFixed(1)});el('path',{d,fill:'none',stroke:s.c,'stroke-width':s.w||2,'stroke-dasharray':s.dash||''},svg);if(s.pts)s.x.forEach((x,i)=>el('circle',{cx:X(x),cy:Y(s.y[i]),r:3,fill:s.c},svg))});
+  (o.labels||[]).forEach(l=>txt(svg,X(l[0]),Y(l[1]),l[2],{fill:l[3]||css('--fg2'),size:12,anchor:l[4]||'start'}));
+}
+function draw(){
+  const c7=css('--s87'),c5=css('--s85'),c3=css('--s3'),mu=css('--muted');
+  plot('pField',{xr:[-0.7,1.6],yr:[0,3],xt:[-0.5,0,0.5,1,1.5],yt:[0,1,2,3],xl:'z (m)',yl:'B_z (T)',bands:[[0,1]],
+    series:[{x:D.field.z,y:D.field.b,c:css('--accent')}],vl:[-0.685,1.365],labels:[[-0.66,2.6,'发射面'],[1.39,2.6,'收集器']]});
+  const e0=D.env['0'],z=e0.z,p=(a,k)=>a.map(v=>v&&v[k]!=null?v[k]*1e3:null);
+  plot('pEnv',{xr:[-0.6,1.6],yr:[0,40],xt:[-0.5,0,0.5,1,1.5],yt:[0,10,20,30,40],xl:'z (m)',yl:'r (mm)',bands:[[0,1]],vl:[1.365],
+    fills:[{x:z,lo:p(e0.r85,0),hi:p(e0.r85,2),c:c5},{x:z,lo:p(e0.r87,0),hi:p(e0.r87,2),c:c7}],
+    series:[{x:z,y:p(e0.r85,1),c:c5},{x:z,y:p(e0.r87,1),c:c7}],labels:[[1.4,30,'Rb-85',c5],[1.4,5,'Rb-87',c7]]});
+  plot('pB',{xr:[2.70,2.825],yr:[0,1.05],xt:[2.70,2.725,2.75,2.775,2.80,2.825],yt:[0,0.25,0.5,0.75,1],yf:v=>Math.round(v*100)+'%',xl:'B₀ (T)',yl:'进孔比例',
+    bands:[[2.7795,2.7905,c3,.18]],series:[{x:D.bscan.B,y:D.bscan.L,c:c5,pts:1},{x:D.bscan.B,y:D.bscan.T,c:c7,pts:1}],labels:[[2.727,0.5,'Rb-85',c5,'end'],[2.797,0.5,'Rb-87',c7]]});
+  const sc=D.sc,cols={'0':css('--fg'),'5e-05':c3,'0.0001':c7,'0.0002':c5},names={'0':'0','5e-05':'0.05 mA','0.0001':'0.1 mA','0.0002':'0.2 mA'};
+  const ser=[];Object.keys(names).forEach(k=>{if(!sc[k])return;ser.push({x:sc[k].z,y:sc[k].T,c:cols[k]});ser.push({x:sc[k].z,y:sc[k].L,c:cols[k],dash:'5 4',w:1.5})});
+  plot('pSC',{xr:[1.2,1.75],yr:[0,1.05],xt:[1.2,1.3,1.4,1.5,1.6,1.7],yt:[0,0.25,0.5,0.75,1],yf:v=>Math.round(v*100)+'%',xl:'收集器位置 z (m)',yl:'进孔比例',vl:[1.365],series:ser,
+    labels:Object.keys(names).filter(k=>sc[k]).map((k,i)=>[1.62,0.95-i*0.08,'I_eff = '+names[k],cols[k]])});
+  const sg=(k)=>D.scat[k].map(v=>v[0]),sv=(k)=>D.scat[k].map(v=>v[1]);
+  plot('pScat',{xr:[-0.6,1.35],yr:[0,1.0],xt:[-0.5,0,0.5,1],yt:[0,0.25,0.5,0.75,1],yf:v=>Math.round(v*100)+'%',xl:'事件位置 z (m)',yl:'进孔概率',bands:[[0,1]],
+    series:[{x:sg('87_0.0'),y:sv('87_0.0'),c:mu,w:1.5},{x:sg('85_0.01'),y:sv('85_0.01'),c:css('--accent'),pts:1},{x:sg('85_0.02'),y:sv('85_0.02'),c:c5,pts:1},{x:sg('85_0.05'),y:sv('85_0.05'),c:css('--warn'),pts:1}],
+    labels:[[-0.55,0.9,'Rb-85：10 mrad',css('--accent')],[-0.55,0.82,'Rb-85：20 mrad',c5],[-0.55,0.74,'Rb-85：50 mrad',css('--warn')],[-0.55,0.66,'Rb-87 电荷交换',mu]]});
+  plot('pVap',{xr:[200,300],yr:[1e-12,1e-3],ylog:1,xt:[200,220,240,260,280,300],yt:[1e-12,1e-9,1e-6,1e-3],yf:v=>'1e'+Math.round(Math.log10(v)),xl:'壁温 (K)',yl:'铷蒸气压 (Pa)',
+    series:[{x:D.vac.T,y:D.vac.P,c:css('--accent'),pts:1},{x:[200,300],y:[4e-7,4e-7],c:c7,dash:'5 4',w:1.5}],labels:[[205,1.5e-6,'收集区上限 4×10⁻⁷ Pa',c7]]});
+  schem();colsvg();
+}
+function schem(){
+  const s=document.getElementById('schem');s.innerHTML='';const fg=css('--fg2'),mu=css('--muted');
+  const X=z=>60+(z+0.75)*380,Y0=165,S=3.2;   // r in mm * S px
+  el('line',{x1:X(-0.75),x2:X(1.55),y1:Y0,y2:Y0,stroke:mu,'stroke-dasharray':'6 4'},s);
+  // coil
+  [[-1],[1]].forEach(([g])=>el('rect',{x:X(0),y:g<0?Y0-130*S*0.33-0:Y0+100*S*0.33,width:X(1)-X(0),height:30*S*0.33,fill:css('--accent-soft'),stroke:css('--accent')},s));
+  txt(s,X(0.5),Y0-130*S*0.33-8,'超导螺线管 2.785 T，r = 100–130 mm',{anchor:'middle',fill:css('--accent')});
+  // liner
+  el('rect',{x:X(-0.2),y:Y0-75*S*0.33,width:X(1.5)-X(-0.2),height:150*S*0.33,fill:'none',stroke:css('--s3'),'stroke-dasharray':'3 3'},s);
+  txt(s,X(1.5)-4,Y0+75*S*0.33+14,'230 K 冷衬管',{anchor:'end',fill:css('--s3'),size:11});
+  // beam envelope median
+  const e=D.env['0'];['r87','r85'].forEach((k,j)=>{let a='',b='';e.z.forEach((z,i)=>{if(z>1.45||!e[k][i]||e[k][i][1]==null)return;const r=e[k][i][1]*1e3*S*0.33;a+=(a?'L':'M')+X(z)+','+(Y0-r);b+=(b?'L':'M')+X(z)+','+(Y0+r)});
+    [a,b].forEach(d=>el('path',{d,fill:'none',stroke:j?css('--s85'):css('--s87'),'stroke-width':1.6},s))});
+  txt(s,X(-0.7),Y0-110,'环形束中位半径（与线圈同比例）',{size:11});
+  const item=(z0,z1,h,lab,row,col)=>{el('rect',{x:X(z0),y:Y0-h,width:Math.max(X(z1)-X(z0),4),height:2*h,fill:col||css('--panel'),stroke:fg},s);txt(s,(X(z0)+X(z1))/2,row,lab,{anchor:'middle',size:11})};
+  item(-0.70,-0.60,40,'离子源',Y0+70+16+40);
+  item(-0.585,-0.578,45,'C1',30);
+  item(-0.575,-0.525,52,'ST1',Y0+70+16+40+0);
+  item(-0.455,-0.447,40,'D1',30);
+  item(-0.275,-0.225,52,'ST2',Y0+70+16+40);
+  item(-0.155,-0.147,40,'D2',30);
+  item(1.278,1.284,22,'E2',30);
+  item(1.365,1.375,60,'',30,css('--warn-soft'));txt(s,X(1.37),30,'收集器',{anchor:'middle',size:11});
+  item(1.375,1.47,9,'',30,css('--accent-soft'));txt(s,X(1.43),Y0+70+16+40,'Rb-87 口袋',{anchor:'middle',size:11});
+  [-0.5,0,0.5,1,1.5].forEach(z=>{el('line',{x1:X(z),x2:X(z),y1:300,y2:306,stroke:mu},s);txt(s,X(z),320,z+' m',{anchor:'middle',size:11})});
+}
+function colsvg(){
+  const s=document.getElementById('colsvg');s.innerHTML='';const fg=css('--fg2'),mu=css('--muted');
+  const X=z=>110+z*7,Y0=150,R=r=>r*5; // z in mm relative to collector plane, r in mm
+  el('line',{x1:X(-15),x2:X(115),y1:Y0,y2:Y0,stroke:mu,'stroke-dasharray':'6 4'},s);
+  // incoming beams (cones)
+  [[1,css('--s87'),5.5],[1,css('--s85'),7.4]].forEach(([_,c,r],j)=>{});
+  const ln=(a,b,c,w,da)=>el('path',{d:a,fill:'none',stroke:b,'stroke-width':w||1.5,'stroke-dasharray':da||''},s);
+  ln(`M${X(-15)},${Y0-R(5.5+1.05)} L${X(0)},${Y0-R(5.5)}`,css('--s87'));ln(`M${X(-15)},${Y0+R(6.5)} L${X(0)},${Y0+R(5.5)}`,css('--s87'));
+  ln(`M${X(-15)},${Y0-R(14)} L${X(5)},${Y0-R(16.3)}`,css('--s85'));ln(`M${X(-15)},${Y0-R(8.5)} L${X(5)},${Y0-R(7.4)}`,css('--s85'));
+  ln(`M${X(-15)},${Y0+R(14)} L${X(5)},${Y0+R(16.3)}`,css('--s85'));ln(`M${X(-15)},${Y0+R(8.5)} L${X(5)},${Y0+R(7.4)}`,css('--s85'));
+  // snout (knife-edge cone) from z=0 (tip, r=5.9) back to z=10 r=9
+  [-1,1].forEach(g=>{el('path',{d:`M${X(0)},${Y0+g*R(5.9)} L${X(10)},${Y0+g*R(9)} L${X(10)},${Y0+g*R(5.9)} Z`,fill:css('--rule'),stroke:fg},s);
+    // dump plate graphite at z=5..12, r 9..25
+    el('rect',{x:X(6),y:g<0?Y0-R(25):Y0+R(9.5),width:R(6),height:R(15.5),fill:css('--warn-soft'),stroke:css('--warn')},s);
+    // pocket: insulator gap then cylinder r=15, z=20..120
+    el('path',{d:`M${X(22)},${Y0+g*R(6)} L${X(22)},${Y0+g*R(15)} L${X(112)},${Y0+g*R(15)}`,fill:'none',stroke:css('--accent'),'stroke-width':3},s);
+    el('line',{x1:X(10),x2:X(14),y1:Y0+g*R(7.5),y2:Y0+g*R(7.5),stroke:fg},s);
+  });
+  el('rect',{x:X(112),y:Y0-R(15),width:R(3),height:R(30),fill:css('--accent')},s);
+  // 87 inside pocket decel paths (diverging)
+  ln(`M${X(0)},${Y0-R(5.5)} Q${X(40)},${Y0-R(12)} ${X(112)},${Y0-R(8)}`,css('--s87'),1.2,'4 3');ln(`M${X(0)},${Y0+R(5.5)} Q${X(40)},${Y0+R(12)} ${X(112)},${Y0+R(8)}`,css('--s87'),1.2,'4 3');
+  txt(s,X(-14),Y0-R(18),'Rb-85 环 7.4–16.3 mm',{fill:css('--s85'),size:11});
+  txt(s,X(-14),Y0+R(18)+12,'Rb-87 ≤ 5.5 mm，会聚角 ~70 mrad',{fill:css('--s87'),size:11});
+  txt(s,X(9),Y0-R(25)-6,'石墨废束靶 ≤230 K，四扇区',{fill:css('--warn'),size:11});
+  txt(s,X(60),Y0-R(15)-8,'Rb-87 减速口袋 +9.7 kV（落地约 300 eV），冷底面',{fill:css('--accent'),size:11,anchor:'middle'});
+  txt(s,X(1),Y0+R(9)+20,'刀口孔嘴 r = 5.9 mm',{size:11});
+  txt(s,X(115),Y0+R(15)+20,'z 方向 1 mm = 7 px，r 方向 1 mm = 5 px',{size:10,anchor:'end',fill:mu});
+}
+function misT(){
+  const tb=document.getElementById('misT');const f=v=>(v*100).toFixed(v>0.9995&&v<1?2:(v>=1?0:1))+'%';
+  MIS.forEach(r=>{const tr=document.createElement('tr');const cell=(x,cls)=>{const td=document.createElement('td');td.className='num';td.innerHTML=x;tr.appendChild(td)};
+    const td0=document.createElement('td');td0.textContent=r.lab;tr.appendChild(td0);
+    cell(r.shift.toFixed(1)+' mm');
+    const pair=(p)=>p?`<span class="${p[0]>=0.99&&p[1]>=0.999?'ok':'bad'}">${f(p[0])} / ${f(p[1])}</span>`:'—';
+    cell(pair(r.fixed));cell(pair(r.rc));cell(pair(r.steer));tb.appendChild(tr)});
+}
+misT();draw();
+let tm;addEventListener('resize',()=>{clearTimeout(tm);tm=setTimeout(draw,150)});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);
+new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+</script>

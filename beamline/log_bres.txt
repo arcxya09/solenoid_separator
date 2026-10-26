@@ -1,0 +1,7 @@
+Bres-10 | best T=1.0000 a=5.22mm z=1.362 rms=1.66mm c=(0.01,-0.04)mm | fixed T=1.0000 pur=1.00000
+Bres-5 | best T=1.0000 a=5.35mm z=1.365 rms=1.60mm c=(0.01,-0.04)mm | fixed T=1.0000 pur=1.00000
+Bres2 | best T=1.0000 a=5.67mm z=1.367 rms=1.59mm c=(0.01,-0.04)mm | fixed T=1.0000 pur=1.00000
+Bres5 | best T=1.0000 a=5.85mm z=1.367 rms=1.61mm c=(0.01,-0.04)mm | fixed T=0.9998 pur=1.00000
+Bres10 | best T=1.0000 a=6.05mm z=1.370 rms=1.67mm c=(0.02,-0.03)mm | fixed T=0.9998 pur=1.00000
+Bres16.4 | best T=1.0000 a=6.35mm z=1.372 rms=1.80mm c=(0.02,-0.03)mm | fixed T=0.9998 pur=1.00000
+Bres25 | best T=0.9998 a=5.72mm z=1.375 rms=2.04mm c=(0.02,-0.03)mm | fixed T=0.9995 pur=1.00000

@@ -1,0 +1,8 @@
+I=6 b2=0 a2=0 Vq=0 th=0.0  rms87=10.76 mm best T=0.997 z=2.450 stageT(21mm)=1.000
+I=6 b2=0.0005 a2=0 Vq=0 th=0.0  rms87=11.19 mm best T=0.995 z=2.445 stageT(21mm)=0.995
+I=6 b2=0.0005 a2=0 Vq=75 th=170.0  rms87=11.30 mm best T=0.994 z=2.445 stageT(21mm)=0.994
+I=6 b2=0.001 a2=0 Vq=0 th=0.0  rms87=12.34 mm best T=0.988 z=2.435 stageT(21mm)=0.978
+I=6 b2=0.001 a2=0 Vq=150 th=170.0  rms87=12.72 mm best T=0.956 z=2.430 stageT(21mm)=0.962
+I=6 b2=0.001 a2=0 Vq=100 th=170.0  rms87=12.44 mm best T=0.976 z=2.430 stageT(21mm)=0.973
+I=6 b2=0 a2=0.001 Vq=0 th=0.0  rms87=12.28 mm best T=0.981 z=2.435 stageT(21mm)=0.977
+I=6 b2=0 a2=0.001 Vq=100 th=125.0  rms87=12.38 mm best T=0.973 z=2.430 stageT(21mm)=0.974

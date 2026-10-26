@@ -1,0 +1,6 @@
+dE-0.005 | best T=1.0000 a=5.05mm z=1.320 rms=1.44mm c=(0.01,-0.03)mm | fixed T=0.9788 pur=1.00000
+dE-0.002 | best T=1.0000 a=5.22mm z=1.335 rms=1.48mm c=(0.01,-0.04)mm | fixed T=0.9992 pur=1.00000
+dE-0.001 | best T=1.0000 a=5.30mm z=1.340 rms=1.50mm c=(0.01,-0.04)mm | fixed T=1.0000 pur=1.00000
+dE0.001 | best T=1.0000 a=5.45mm z=1.350 rms=1.54mm c=(0.01,-0.04)mm | fixed T=1.0000 pur=1.00000
+dE0.002 | best T=1.0000 a=5.47mm z=1.357 rms=1.56mm c=(0.01,-0.04)mm | fixed T=1.0000 pur=1.00000
+dE0.005 | best T=1.0000 a=5.70mm z=1.375 rms=1.61mm c=(0.01,-0.04)mm | fixed T=0.9998 pur=0.99037

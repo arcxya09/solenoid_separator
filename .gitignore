@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+
+# Large data / caches (not tracked; see README "Excluded large files")
+*.npz
+*.npy
+integrated/cache/
+beamline/sol_cache_*.pkl
+beamline/src/src_0p1mA.pkl
+beamline/src/src_0p3mA.pkl
+source/src_v3.pkl

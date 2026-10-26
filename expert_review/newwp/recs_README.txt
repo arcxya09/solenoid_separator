@@ -1,0 +1,1 @@
+recs_h6_*.npy: dict '85'/'87' -> array (nplanes, N=2000, 6: x,y,z,vx,vy,vz), planes zp=np.arange(2.364-0.40, 2.364+0.15, 0.005); machine B, B=1.912 T, I=6 or 5 mA unneutralised, source srcB_6mA_V17400.pkl / src104_30k_5mA.pkl

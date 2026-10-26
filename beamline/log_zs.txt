@@ -1,0 +1,15 @@
+zs-0.4_B2.74 | best T=1.0000 a=8.18mm z=1.612 rms=2.32mm c=(0.02,-0.05)mm | fixed T=0.0000 pur=0.00000
+zs-0.4_B2.76 | best T=1.0000 a=6.32mm z=1.452 rms=1.80mm c=(0.01,-0.04)mm | fixed T=0.7515 pur=0.24542
+zs-0.4_B2.78 | best T=1.0000 a=5.20mm z=1.352 rms=1.48mm c=(0.01,-0.04)mm | fixed T=1.0000 pur=1.00000
+zs-0.4_B2.80 | best T=1.0000 a=4.40mm z=1.285 rms=1.27mm c=(0.01,-0.03)mm | fixed T=0.3377 pur=1.00000
+zs-0.4_B2.82 | best T=1.0000 a=3.82mm z=1.235 rms=1.12mm c=(0.00,-0.03)mm | fixed T=0.0000 pur=0.00000
+zs-0.8_B2.74 | best T=0.9998 a=8.40mm z=1.670 rms=2.78mm c=(0.03,-0.06)mm | fixed T=0.0000 pur=0.00000
+zs-0.8_B2.76 | best T=0.9998 a=6.38mm z=1.487 rms=2.12mm c=(0.02,-0.05)mm | fixed T=0.2622 pur=0.09302
+zs-0.8_B2.78 | best T=0.9998 a=5.20mm z=1.377 rms=1.73mm c=(0.02,-0.04)mm | fixed T=0.9998 pur=0.84309
+zs-0.8_B2.80 | best T=0.9998 a=4.40mm z=1.302 rms=1.48mm c=(0.01,-0.03)mm | fixed T=0.7802 pur=1.00000
+zs-0.8_B2.82 | best T=0.9998 a=3.82mm z=1.247 rms=1.30mm c=(0.01,-0.03)mm | fixed T=0.0000 pur=0.00000
+zs-0.9_B2.74 | best T=0.9995 a=8.18mm z=1.685 rms=2.93mm c=(0.04,-0.06)mm | fixed T=0.0000 pur=0.00000
+zs-0.9_B2.76 | best T=0.9995 a=6.12mm z=1.497 rms=2.23mm c=(0.02,-0.05)mm | fixed T=0.1787 pur=0.06509
+zs-0.9_B2.78 | best T=0.9995 a=4.95mm z=1.382 rms=1.82mm c=(0.02,-0.04)mm | fixed T=0.9998 pur=0.70898
+zs-0.9_B2.80 | best T=0.9995 a=4.42mm z=1.307 rms=1.55mm c=(0.01,-0.03)mm | fixed T=0.8430 pur=1.00000
+zs-0.9_B2.82 | best T=0.9992 a=3.67mm z=1.250 rms=1.36mm c=(0.01,-0.03)mm | fixed T=0.0025 pur=1.00000

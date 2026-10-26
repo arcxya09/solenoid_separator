@@ -1,0 +1,12 @@
+base  I=0.30 B=2.8420 T=0.9667 a=7.25 z=1.415 rms=4.59 r85min=7.25 src30_0p3.pkl
+base  I=0.30 B=2.8560 T=1.0000 a=7.90 z=1.370 rms=3.58 r85min=7.95 src30_0p3.pkl
+base  I=0.30 B=2.8700 T=1.0000 a=6.68 z=1.315 rms=3.00 r85min=6.97 src30_0p3.pkl
+base  I=0.50 B=2.8560 T=0.2107 a=4.63 z=1.415 rms=11.23 r85min=4.69 src30_0p5.pkl
+base  I=0.50 B=2.8700 T=0.7193 a=9.30 z=1.415 rms=14.05 r85min=9.32 src30_0p5.pkl
+base  I=0.50 B=2.8840 T=0.7193 a=8.25 z=1.350 rms=12.46 r85min=8.28 src30_0p5.pkl
+new   I=0.75 B=1.9150 T=1.0000 a=11.75 z=1.390 rms=5.01 r85min=12.16 src60_0p5.pkl
+new   I=0.75 B=1.9250 T=1.0000 a=10.40 z=1.345 rms=4.37 r85min=11.12 src60_0p5.pkl
+new   I=0.75 B=1.9350 T=1.0000 a=9.43 z=1.315 rms=3.78 r85min=11.54 src60_0p5.pkl
+new   I=1.00 B=1.9250 T=0.8287 a=12.28 z=1.390 rms=10.66 r85min=12.29 src60_1p0.pkl
+new   I=1.00 B=1.9320 T=0.8200 a=11.20 z=1.355 rms=10.17 r85min=11.22 src60_1p0.pkl
+new   I=1.00 B=1.9400 T=0.8020 a=10.88 z=1.325 rms=10.11 r85min=10.88 src60_1p0.pkl
